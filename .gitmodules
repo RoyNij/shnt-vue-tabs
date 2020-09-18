@@ -1,0 +1,3 @@
+[submodule "src/components/shnt-vue-accordion"]
+	path = src/components/shnt-vue-accordion
+	url = git@github.com:RoyNij/shnt-vue-accordion.git
