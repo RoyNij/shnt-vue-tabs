@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Collapsible from './Collapsible.vue';
+import Collapsible from './shnt-vue-accordion/src/components/Collapsible.vue';
 
 export default {
 	components: {
