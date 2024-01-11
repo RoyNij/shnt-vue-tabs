@@ -11,7 +11,8 @@ export default {
 	data: function(){
 		return {
 			height: 0,
-			m_duration: 0
+			m_duration: 0,
+            observer: new ResizeObserver( this.handleResize )
 		}
 	},
 	props: {
@@ -78,13 +79,20 @@ export default {
 				this.m_duration = this.duration
 			}
 		},
+        handleResize( entries ){
+            if( this.open ){
+                this.setHeight()
+            }
+        }
 	},
 	created(){
 		this.setDuration();
 	},
 	mounted(){
 		this.setHeight( true );
+        this.observer.observe( this.$refs.content );
 		window.addEventListener( 'resize', this.setHeight.bind( this ) );
+
 	},
 	destroyed(){
 		window.removeEventListener( 'resize', this.setHeight.bind( this ) );
