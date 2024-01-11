@@ -12,7 +12,7 @@
 			</li>
 		</ul>
 		<div class="shnt-tabs__container">
-			<slot></slot>
+			<slot :set-tab="setTab"></slot>
 		</div>
 	</div>
 </template>
@@ -32,14 +32,23 @@ export default {
 		}
 	},
 	mounted(){
-		this.tabs = this.$children;
-
-		if( this.immediateOpen && this.tabs.length > 0 ){
+        console.log( this.tabs )
+        if( this.immediateOpen && this.tabs.length > 0 ){
 			this.tabs[0].toggleSelected( true );
 			this.tabSelected = this.tabs[ 0 ];
 		}
 	},
 	methods: {
+        setTab( tab ){
+            if( !tab ){
+                return
+            }
+            let idx = this.tabs.findIndex( t => t.title === tab.title );
+            if( idx < 0 ){
+                this.tabs.push( tab )
+            }
+
+        },
 		selectTab: function( tab ){
 			if( this.tabSelected !== null && this.tabSelected.title === tab.title){
 				tab.toggleSelected( false );
